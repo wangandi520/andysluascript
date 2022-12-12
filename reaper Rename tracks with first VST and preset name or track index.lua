@@ -3,7 +3,7 @@
  * Instructions: Select tracks and run
  * Author: wangandi520
  * Author URI: https://github.com/wangandi520/andysluascript
- * Inherited and inspired:https://github.com/X-Raym/REAPER-ReaScripts
+ * Inherited and inspired: https://github.com/X-Raym/REAPER-ReaScripts
  * REAPER: 6.71
  * Version: 1.0
 --]]
