@@ -38,9 +38,15 @@ function main()
    -- retval1, presetname = reaper.TrackFX_GetPreset(track, 0, "")
 	--result0 = fx_name and "true" or "false"
     --reaper.ShowConsoleMsg(result0)
-	--result1 = presetname and "true" or "false"
-    --reaper.ShowConsoleMsg(result1)
+    --reaper.ShowConsoleMsg(presetname)
+	--result1 = retval1 and "true" or "false"
     retval1, presetname = reaper.TrackFX_GetPreset(getSelectedTrack, 0, "")
+	
+	if string.len(presetname) == 0 then
+		retval1 = false
+		presetname = nil
+	end
+	
     if retval0 and retval1 then
       track_name_retval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME",
         fx_name .. " - " .. presetname, true)
