@@ -4,13 +4,14 @@
  first upload
  2022.12.12
 --]]
-function toint(n)
-    local s = tostring(n)
+
+function toint(num)
+    local s = tostring(num)
     local i, j = s:find('%.')
     if i then
         return tonumber(s:sub(1, i-1))
     else
-        return n
+        return num
     end
 end
 
