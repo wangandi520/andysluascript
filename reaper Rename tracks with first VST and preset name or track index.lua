@@ -23,28 +23,28 @@ function main()
 		getTrackIndex = reaper.GetMediaTrackInfo_Value(getSelectedTrack, 'IP_TRACKNUMBER')
 		retvalFX, fxName = reaper.TrackFX_GetFXName(getSelectedTrack, 0, "")
 	
-	if retvalFX then
-		getIndex = string.find(fxName,": ")
-		fxName = string.sub(fxName, getIndex + 1)
-		fxName = fxName:gsub(" %(.-%)", "")
+		if retvalFX then
+			getIndex = string.find(fxName,": ")
+			fxName = string.sub(fxName, getIndex + 1)
+			fxName = fxName:gsub(" %(.-%)", "")
+		end
+		
+		retvalPreset, presetName = reaper.TrackFX_GetPreset(getSelectedTrack, 0, "")
+		
+		if string.len(presetName) == 0 then
+			retvalPreset = false
+			presetName = nil
+		end
+		
+		if retvalFX and retvalPreset then
+			track_name_retval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME",
+			fxName .. " - " .. presetName, true)
+		elseif retvalFX and not retvalPreset then
+			track_name_retval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", fxName, true)
+		elseif not retvalFX and not retvalPreset then
+			track_name_retval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", "Track" .. string.format("%03d",toInt(getTrackIndex)), true)
+		end
 	end
-	
-    retvalPreset, presetName = reaper.TrackFX_GetPreset(getSelectedTrack, 0, "")
-	
-	if string.len(presetName) == 0 then
-		retvalPreset = false
-		presetName = nil
-	end
-	
-    if retvalFX and retvalPreset then
-		track_name_retval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME",
-        fxName .. " - " .. presetName, true)
-    elseif retvalFX and not retvalPreset then
-        track_name_retval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", fxName, true)
-    elseif not retvalFX and not retvalPreset then
-        track_name_retval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", "Track" .. string.format("%03d",toInt(getTrackIndex)), true)
-    end
-  end
 end
 
 tracks_count = reaper.CountSelectedTracks(0)
@@ -57,5 +57,4 @@ if tracks_count > 0 then
 	
 	reaper.Undo_EndBlock("Rename tracks with first VSTi and its preset name", -1)
 	reaper.PreventUIRefresh(-1)
-
 end
