@@ -37,11 +37,14 @@ function main()
 		end
 		
 		if retvalFX and retvalPreset then
-			trackNameRetval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", fxName .. " - " .. presetName, true)
+			trackNameRetval, trackName = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", fxName .. " - " .. presetName, true)
 		elseif retvalFX and not retvalPreset then
-			trackNameRetval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", fxName, true)
+			trackNameRetval, trackName = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", fxName, true)
 		elseif not retvalFX and not retvalPreset then
-			trackNameRetval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", "Track" .. string.format("%03d",toInt(getTrackIndex)), true)
+			trackNameRetval, trackName = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", "", false)
+			if string.len(trackName) == 0 then
+				trackNameRetval, trackName = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", "Track" .. string.format("%03d",toInt(getTrackIndex)), true)
+			end
 		end
 	end
 end
