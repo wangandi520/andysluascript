@@ -2,7 +2,7 @@
  * ReaScript Name: Rename tracks with first VST and preset name or track index
  * Instructions: Select tracks and run
  * Author: wangandi520
- * Author URI: https://github.com/wangandi520/andysluascript
+ * Author Homepage: https://github.com/wangandi520/andysluascript
  * Inherited and inspired: https://github.com/X-Raym/REAPER-ReaScripts
  * REAPER: 6.71
  * Version: 1.0
