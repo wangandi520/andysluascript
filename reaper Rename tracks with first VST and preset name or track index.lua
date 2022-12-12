@@ -1,10 +1,17 @@
 --[[
-	homepage:https://github.com/wangandi520/andysluascript
-	inherit:https://github.com/X-Raym/REAPER-ReaScripts
+ * ReaScript Name: Rename tracks with first VST and preset name or track index
+ * Instructions: Select tracks and run
+ * Author: wangandi520
+ * Author URI: https://github.com/wangandi520/andysluascript
+ * inherit:https://github.com/X-Raym/REAPER-ReaScripts
+ * REAPER: 6.71
+ * Version: 1.0
+--]]
  
-	v0.1:
-	first upload
-	2022.12.12
+--[[
+ * Changelog:
+ * v1.0 (2022-12-12)
+ 	+ Initial Release
 --]]
 
 function toInt(num)
