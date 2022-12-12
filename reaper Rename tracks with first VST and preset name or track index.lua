@@ -21,7 +21,7 @@ function main()
 	for i = 0, tracks_count - 1 do
 		getSelectedTrack = reaper.GetSelectedTrack(0, i)
 		getTrackIndex = reaper.GetMediaTrackInfo_Value(getSelectedTrack, 'IP_TRACKNUMBER')
-		retvalFX, fxName = reaper.TrackFX_GetFXName(getSelectedTrack, 0, "")
+		retvalFX, fxName = reaper.TrackFX_GetFXName(getSelectedTrack, 0)
 	
 		if retvalFX then
 			getIndex = string.find(fxName,": ")
@@ -37,12 +37,11 @@ function main()
 		end
 		
 		if retvalFX and retvalPreset then
-			track_name_retval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME",
-			fxName .. " - " .. presetName, true)
+			trackNameRetval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", fxName .. " - " .. presetName, true)
 		elseif retvalFX and not retvalPreset then
-			track_name_retval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", fxName, true)
+			trackNameRetval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", fxName, true)
 		elseif not retvalFX and not retvalPreset then
-			track_name_retval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", "Track" .. string.format("%03d",toInt(getTrackIndex)), true)
+			trackNameRetval, track_name = reaper.GetSetMediaTrackInfo_String(getSelectedTrack, "P_NAME", "Track" .. string.format("%03d",toInt(getTrackIndex)), true)
 		end
 	end
 end
