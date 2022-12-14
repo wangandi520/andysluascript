@@ -3,7 +3,7 @@
  * Instructions: Select tracks and run
  * Author: wangandi520
  * Author Homepage: https://github.com/wangandi520/andysluascript
- * Inherited and inspired: https://github.com/X-Raym/REAPER-ReaScripts
+ * Inherited and inspired: https://github.com/X-Raym/REAPER-ReaScripts/blob/master/Track%20Properties/X-Raym_Rename%20tracks%20with%20first%20VSTi%20and%20its%20preset%20name.lua
  * REAPER: 6.71
  * Version: 1.0
 --]]
